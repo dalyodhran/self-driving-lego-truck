@@ -25,7 +25,7 @@ def importDataInfo(path):
     columns = ['Center','Steering']
     noOfFolders = len(os.listdir(path))//2
     data = pd.DataFrame()
-    for x in range(17,22):
+    for x in range(0,noOfFolders):
         dataNew = pd.read_csv(os.path.join(path, f'log_{x}.csv'), names = columns)
         print(f'{x}:{dataNew.shape[0]} ',end='')
         #### REMOVE FILE PATH AND GET ONLY FILE NAME
