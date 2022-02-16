@@ -5,7 +5,8 @@ x=0
 filedescriptors = termios.tcgetattr(sys.stdin)
 
 def init():
-    tty.setcbreak(sys.stdin)
+  tty.setcbreak(sys.stdin)
+  motor.calibrate()
 
 def control():
     while 1:

@@ -3,7 +3,7 @@ from buildhat import Motor
 import time
 #74, -126
 motor_forward = MotorPair('B','C')
-motor_forward.set_default_speed(10)
+motor_forward.set_default_speed(50)
 motor_lr = Motor('A')
 top = 0
 bottom = 0
@@ -18,32 +18,32 @@ def Forward(go = True):
         motor_forward.run_for_seconds(0.1)
 
 def turnLeft(deg):
-    endDeg = currentDeg + deg
-    if(endDeg>25):
-        endDeg = 25
+   # endDeg = currentDeg + deg
+   # if(endDeg>25):
+   #     endDeg = 25
 
-    moveDeg = endDeg - currentDeg
+    #moveDeg = endDeg - currentDeg
 
     #points = (bottom,-25),(top,25),(ePos,moveDeg)
-    ePos = bottom + ((moveDeg + 25)/(25 + 25))*(top - bottom)
+   # ePos = bottom + ((moveDeg + 25)/(25 + 25))*(top - bottom)
 
-    movePos = ePos - motor_lr.get_position
+    #movePos = ePos - motor_lr.get_position()
 
-    motor_lr.run_for_degrees(movePos)
+    motor_lr.run_for_degrees(-deg)
 
 def turnRight(deg):
-    endDeg = currentDeg - deg
-    if(endDeg<-25):
-        endDeg = -25
+    #endDeg = currentDeg - deg
+    #if(endDeg<-25):
+     #   endDeg = -25
 
-    moveDeg = endDeg - currentDeg
+   # moveDeg = endDeg - currentDeg
 
     #points = (bottom,-25),(top,25),(ePos,moveDeg)
-    ePos = bottom + ((moveDeg + 25)/(25 + 25))*(top - bottom)
+    #ePos = bottom + ((moveDeg + 25)/(25 + 25))*(top - bottom)
 
-    movePos = ePos - motor_lr.get_position
+    #movePos = ePos - motor_lr.get_position()
 
-    motor_lr.run_for_degrees(-movePos)
+    motor_lr.run_for_degrees(deg)
 
 def stop():
     print("Stopping")
