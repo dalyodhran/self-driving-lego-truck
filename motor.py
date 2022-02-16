@@ -32,7 +32,7 @@ def turnLeft(deg):
     motor_lr.run_for_degrees(movePos)
 
 def turnRight(deg):
-    endDeg = currentDeg + deg
+    endDeg = currentDeg - deg
     if(endDeg<-25):
         endDeg = -25
 
