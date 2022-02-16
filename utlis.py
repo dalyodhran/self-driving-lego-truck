@@ -9,7 +9,9 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Convolution2D,Flatten,Dense
 from tensorflow.keras.optimizers import Adam
 
+# Used for plotting the histograms
 import matplotlib.image as mpimg
+# Used for image augmentation
 from imgaug import augmenters as iaa
 
 import random
@@ -37,6 +39,8 @@ def importDataInfo(path):
     return data
 
 #### STEP 2 - VISUALIZE AND BALANCE DATA
+#### Balancing happens by way of removing unnecessary samples from the dataset (just the paths and corresponding
+#### steering angles from each list) in order to even out the data and give more significance to all the other angles
 def balanceData(data,display=True):
     nBin = 31
     # The number of samples to keep for each bin is strictly related to the amount of pictures captured per "scenario"
@@ -75,6 +79,7 @@ def balanceData(data,display=True):
     return data
 
 #### STEP 3 - PREPARE FOR PROCESSING
+#### Split the data from the pandas format (used for balancing and visualization) into two lists for processing
 def loadData(path, data):
   imagesPath = []
   steering = []
@@ -88,8 +93,10 @@ def loadData(path, data):
 
 
 #### STEP 5 - AUGMENT DATA
+#### This step randomly affects the images dataset (panning around, flipping the image, changing the brightness etc...)
+#### is a step needed to artificially broaden the dataset when training the model
 def augmentImage(imgPath,steering):
-    img =  mpimg.imread(imgPath)
+    img = mpimg.imread(imgPath)
     if np.random.rand() < 0.5:
         pan = iaa.Affine(translate_percent={"x": (-0.1, 0.1), "y": (-0.1, 0.1)})
         img = pan.augment_image(img)
@@ -124,6 +131,7 @@ def preProcess(img):
 # plt.show()
 
 #### STEP 7 - CREATE MODEL
+### Exponential linear units = 'elu', rectifier
 def createModel():
   model = Sequential()
 
@@ -139,7 +147,8 @@ def createModel():
   model.add(Dense(10, activation = 'elu'))
   model.add(Dense(1))
 
-  model.compile(Adam(lr=0.0001),loss='mse')
+  model.compile(Adam(learning_rate=0.0001),loss='mse')
+  model.summary()
   return model
 
 #### STEP 8 - TRAINING
