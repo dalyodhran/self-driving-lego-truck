@@ -18,18 +18,32 @@ def Forward(go = True):
         motor_forward.run_for_seconds(0.1)
 
 def turnLeft(deg):
-    while(deg>0):
-        motor_lr.run_for_degrees(1)
-        oldDeg = currentDeg
-        currentDeg = current_pos()
-        deg = deg - abs(oldDeg - currentDeg)
+    endDeg = currentDeg + deg
+    if(endDeg>25):
+        endDeg = 25
+
+    moveDeg = endDeg - currentDeg
+
+    #points = (bottom,-25),(top,25),(ePos,moveDeg)
+    ePos = bottom + ((moveDeg + 25)/(25 + 25))*(top - bottom)
+
+    movePos = ePos - motor_lr.get_position
+
+    motor_lr.run_for_degrees(movePos)
 
 def turnRight(deg):
-    while(deg>0):
-        motor_lr.run_for_degrees(-1)
-        oldDeg = currentDeg
-        currentDeg = current_pos()
-        deg = deg - abs(oldDeg - currentDeg)
+    endDeg = currentDeg + deg
+    if(endDeg<-25):
+        endDeg = -25
+
+    moveDeg = endDeg - currentDeg
+
+    #points = (bottom,-25),(top,25),(ePos,moveDeg)
+    ePos = bottom + ((moveDeg + 25)/(25 + 25))*(top - bottom)
+
+    movePos = ePos - motor_lr.get_position
+
+    motor_lr.run_for_degrees(-movePos)
 
 def stop():
     print("Stopping")
