@@ -1,15 +1,19 @@
-import tty, sys, termios
+import tty
+import sys
+import termios
 import motor
 
-x=0
+x = 0
 filedescriptors = termios.tcgetattr(sys.stdin)
+
 
 def init():
     tty.setcbreak(sys.stdin)
 
+
 def control():
     while 1:
-        x=sys.stdin.read(1)[0]
+        x = sys.stdin.read(1)[0]
         print("You pressed", x)
         if x == "A":
             motor.moveForward()
@@ -18,11 +22,14 @@ def control():
         if x == "C":
             motor.turnRight(30)
         if x == "D":
-            motor.turnLeft(30)
+            motor.turnLeft(-30)
+
+        x = "G"
+
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, filedescriptors)
 
- 
+
 if __name__ == '__main__':
     init()
-    while True:
-        control()
+    motor.run()
+    control()
