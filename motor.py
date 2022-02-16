@@ -8,6 +8,7 @@ motor_lr = Motor('A')
 top = 0
 bottom = 0
 center = 0
+currentDeg = 0
 
 def moveForward():
 	motor_forward.start()
@@ -17,27 +18,31 @@ def Forward(go = True):
         motor_forward.run_for_seconds(0.1)
 
 def turnLeft(deg):
-    if(motor_lr.get_aposition() - deg < bottom):
-        deg = bottom - motor_lr.get_position()
-    print("Turning ",deg," degress left")
-    motor_lr.run_for_degrees(deg)
+    while(deg>0):
+        motor_lr.run_for_degrees(1)
+        oldDeg = currentDeg
+        currentDeg = current_pos()
+        deg = deg - abs(oldDeg - currentDeg)
 
 def turnRight(deg):
-    if(motor_lr.get_aposition()+deg>top):
-        deg = top - motor_lr.get_position()
-    print("Turning ",deg," degress right")
-    motor_lr.run_for_degrees(-deg)
+    while(deg>0):
+        motor_lr.run_for_degrees(-1)
+        oldDeg = currentDeg
+        currentDeg = current_pos()
+        deg = deg - abs(oldDeg - currentDeg)
 
 def stop():
     print("Stopping")
     motor_forward.stop()
 
 def straighten():
+    global currentDeg
     print(center)
-    motor_lr.run_for_degrees(center - motor_lr.get_position())
+    motor_lr.run_for_degrees(convert_num(center) - motor_lr.get_position())
+    currentDeg = current_pos()
 
 def calibrate():
-    global center,top,bottom
+    global center,top,bottom,currentDeg
     motor_lr.run_for_degrees(-300)
     top = convert_num(motor_lr.get_position())
     motor_lr.run_for_degrees(600)
@@ -49,6 +54,7 @@ def calibrate():
         center = top + (offset/2)
 
     print(top,bottom,offset,center)
+    currentDeg = current_pos()
 
 def current_pos():
     #points are (top,25),(bottom,-25), (mpos,cdeg)
