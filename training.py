@@ -1,23 +1,24 @@
 print('Setting UP')
 import os
+
+#### SETTING TENSORFLOW LOG LEVEL TO: WARNING
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 from sklearn.model_selection import train_test_split
 from utlis import *
 
 
-#### STEP 1 - INITIALIZE DATA
+#### STEP 1 - INITIALIZE DATA (RETURNS PANDAS DATAFRAME FORMAT)
 path = 'DataCollected'
 data = importDataInfo(path)
 print(data.head())
 
-#### STEP 2 - VISUALIZE AND BALANCE DATA
+#### STEP 2 - VISUALIZE HISTOGRAM AND BALANCE DATA
+#### Balancing happens by way of removing unnecessary samples from the dataset (just the paths and corresponding
+#### steering angles from each list) in order to even out the data and give more significance to all the other angles
 data = balanceData(data,display=True)
 
 #### STEP 3 - PREPARE FOR PROCESSING
 imagesPath, steerings = loadData(path,data)
-# print('No of Path Created for Images ',len(imagesPath),len(steerings))
-# cv2.imshow('Test Image',cv2.imread(imagesPath[5]))
-# cv2.waitKey(0)
 
 #### STEP 4 - SPLIT FOR TRAINING AND VALIDATION
 xTrain, xVal, yTrain, yVal = train_test_split(imagesPath, steerings,
@@ -26,13 +27,15 @@ print('Total Training Images: ',len(xTrain))
 print('Total Validation Images: ',len(xVal))
 
 #### STEP 5 - AUGMENT DATA
+#### this step is included in data generation (dataGen) perform in the training step
 
 #### STEP 6 - PREPROCESS
+#### this step is included in data generation (dataGen) perform in the training step
 
 #### STEP 7 - CREATE MODEL
 model = createModel()
 
-#### STEP 8 - TRAINNING
+#### STEP 8 - TRAINING
 history = model.fit(dataGen(xTrain, yTrain, 100, 1),
                                   steps_per_epoch=100,
                                   epochs=10,

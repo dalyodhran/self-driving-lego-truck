@@ -39,7 +39,9 @@ def importDataInfo(path):
 #### STEP 2 - VISUALIZE AND BALANCE DATA
 def balanceData(data,display=True):
     nBin = 31
-    samplesPerBin =  300
+    # The number of samples to keep for each bin is strictly related to the amount of pictures captured per "scenario"
+    # assuming 500(ish) pictures taken in each and every data collection "pass"
+    samplesPerBin = 300
     hist, bins = np.histogram(data['Steering'], nBin)
     if display:
         center = (bins[:-1] + bins[1:]) * 0.5
@@ -140,7 +142,7 @@ def createModel():
   model.compile(Adam(lr=0.0001),loss='mse')
   return model
 
-#### STEP 8 - TRAINNING
+#### STEP 8 - TRAINING
 def dataGen(imagesPath, steeringList, batchSize, trainFlag):
     while True:
         imgBatch = []
