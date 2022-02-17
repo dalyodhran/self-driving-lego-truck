@@ -22,7 +22,7 @@ epochs=10
 validation_steps=50
 
 # Step 1 - Gather the data from the DataCollected folder
-startFolderNumber = 0
+startFolderNumber = 7
 endFolderNumber = len(os.listdir(path))//2  # Number of folders
 data = gatherImageData(path,startFolderNumber,endFolderNumber)
 
