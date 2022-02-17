@@ -1,7 +1,7 @@
 import motor
 import camera_module
 import os
-import pandas as pd
+import pandas
 
 global imgList, steeringList
 countFolder = 0
@@ -26,7 +26,7 @@ def save_collection():
     global imgList, steeringList
     rawData = {'Image': imgList,
                'Steering': steeringList}
-    df = pd.DataFrame(rawData)
+    df = pandas.DataFrame(rawData)
     df.to_csv(os.path.join(
         myDirectory, f'log_{str(countFolder)}.csv'), index=False, header=False)
     print('Log Saved')

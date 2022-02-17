@@ -1,11 +1,9 @@
-from math import fabs
 import tty
 import sys
 import termios
 import motor
-import data_collection as dc
+import data_collection
 
-x = 0
 filedescriptors = termios.tcgetattr(sys.stdin)
 
 
@@ -32,10 +30,9 @@ def control():
         if x == 's':
             print('Saving colected Data')
             collect_data = False
-            dc.save_collection()
-
+            data_collection.save_collection()
         if collect_data:
-            dc.collect_frame()
+            data_collection.collect_frame()
 
         x = "G"
 
