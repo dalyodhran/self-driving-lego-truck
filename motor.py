@@ -8,20 +8,23 @@ motor_forward.set_default_speed(100)
 motor_lr = Motor('A')
 lr_counter = 0
 
+
 def moveForward():
     motor_forward.start()
 
 
 def turnLeft():
-    if(lr_counter<-5):
-        motor_lr.run_for_degrees(30)
-        counter -= 1
+    global lr_counter
+    if(lr_counter < -5):
+        motor_lr.run_for_degrees(-30)
+        lr_counter -= 1
 
 
 def turnRight():
-    if(lr_counter>5):
-        motor_lr.run_for_degrees(-30)
-        counter += 1
+    global lr_counter
+    if(lr_counter > 5):
+        motor_lr.run_for_degrees(30)
+        lr_counter += 1
 
 
 def stop():

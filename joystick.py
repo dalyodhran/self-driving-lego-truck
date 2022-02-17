@@ -5,6 +5,7 @@ import motor
 import data_collection
 
 filedescriptors = termios.tcgetattr(sys.stdin)
+x = 0
 
 
 def init():
@@ -21,9 +22,9 @@ def control():
         if x == "B":
             motor.stop()
         if x == "C":
-            motor.turnRight(30)
+            motor.turnRight()
         if x == "D":
-            motor.turnLeft(-30)
+            motor.turnLeft()
         if x == 'r':
             print('Collecting Data')
             collect_data = True
@@ -34,7 +35,7 @@ def control():
         if collect_data:
             data_collection.collect_frame()
 
-        x = "G"
+        x = 0
 
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, filedescriptors)
 
