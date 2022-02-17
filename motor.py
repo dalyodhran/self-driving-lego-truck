@@ -4,8 +4,10 @@ import time
 
 
 motor_forward = MotorPair('B', 'C')
-motor_forward.set_default_speed(10)
+motor_forward.set_default_speed(100)
 motor_lr = Motor('A')
+global_left_rotate = 0
+global_right_rotate = 0
 
 
 def moveForward():
@@ -25,17 +27,25 @@ def stop():
     motor_forward.stop()
 
 
+def current_pos():
+    return motor_lr.get_aposition()
+
+
 def calibrate():
     avg_center = 0
+    avg_left = 0
+    avg_right = 0
 
     for i in range(0, 5):
         motor_lr.run_for_degrees(360)
 
         position_right = motor_lr.get_aposition()
+        avg_right += position_right
         print(position_right)
 
         motor_lr.run_for_degrees(-360)
         position_left = motor_lr.get_aposition()
+        avg_left += position_left
         print(position_left)
         offset = abs(position_right - position_left)
         if position_left > position_right:
@@ -46,6 +56,8 @@ def calibrate():
         avg_center += center
 
     motor_lr.run_to_position(avg_center/5)
+    global_left_rotate(avg_left/5)
+    global_right_rotate(avg_right/5)
     print(motor_lr.get_aposition())
 
 
