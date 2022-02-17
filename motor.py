@@ -42,12 +42,10 @@ def calibrate():
         motor_lr.run_for_degrees(360)
 
         position_right = motor_lr.get_aposition()
-        avg_right = avg_right + position_right
         print(position_right)
 
         motor_lr.run_for_degrees(-360)
         position_left = motor_lr.get_aposition()
-        avg_left = avg_left + position_left
         print(position_left)
         offset = abs(position_right - position_left)
         if position_left > position_right:
