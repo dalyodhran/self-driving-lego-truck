@@ -15,12 +15,11 @@ display = False
 # Folder from which to recover the files
 path = 'DataCollected'
 
-
 batchSize=100
 validationBatchSize=50
-steps_per_epoch=10
-epochs=2
-validation_steps=5
+steps_per_epoch=100
+epochs=10
+validation_steps=50
 
 # Step 1 - Gather the data from the DataCollected folder
 startFolderNumber = 0
