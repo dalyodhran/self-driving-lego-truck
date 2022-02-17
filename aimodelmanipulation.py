@@ -13,7 +13,8 @@ def trainModel(model, trainingData, validationData, steps_per_epoch, epochs, val
     return history
 
 ### Exponential linear units = 'elu', rectifier
-# This model configuration is tuned as instructed by nvidia
+# This model configuration is tuned as instructed by nvidia: 'Nvidia End-to-End Self-Driving Cars'
+# https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf
 def createAiModel():
   model = Sequential()
 

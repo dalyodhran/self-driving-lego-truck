@@ -41,6 +41,9 @@ Reference:
 	https://serokell.io/blog/introduction-to-convolutional-neural-networks
 	https://serokell.io/blog/deep-learning-and-neural-network-guide
 
+	Model configuration:
+	https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf
+
 Dense Layers:
 
 	This layer helps in changing the dimensionality of the output from the preceding layer so that the model can easily define the relationship between the values of the data in which the model is working.

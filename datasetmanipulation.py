@@ -8,8 +8,9 @@ import os
 import matplotlib.image as mpimg
 # Used for image augmentation
 from imgaug import augmenters as iaa
+import numpy as np
+import matplotlib.pyplot as plt
 
-from datavisualization import *
 
 # This performs the actual import of the real data, from the given file paths, in the validation dataset
 def generateAugmentedTrainData(imagesPath, steeringAnglesList, batchSize):
@@ -45,12 +46,13 @@ def generateValidationData(imagesPath, steeringAnglesList, batchSize):
 # Change color space to YUV (luma-chroma) color space from RGB
 # Slightly blur the image
 # Resize the image to be 200 x 66
+# https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf
 def preProcess(img):
     img = img[54:120,:,:]
     img = cv2.cvtColor(img, cv2.COLOR_RGB2YUV)
     img = cv2.GaussianBlur(img,  (3, 3), 0)
     img = cv2.resize(img, (200, 66))
-    img = img/255
+    img = img/255  # dividing pixel values by 255 to bring pixel values between 0 and 1
     return img
 
 # Randomly affects the images dataset (panning around, flipping the image, changing the brightness etc...)

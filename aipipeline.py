@@ -10,7 +10,7 @@ from datasetmanipulation import *
 from aimodelmanipulation import *
 
 # Configuration for the histogram
-display = False
+display = True
 
 # Folder from which to recover the files
 path = 'DataCollected'

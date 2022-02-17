@@ -33,12 +33,13 @@ Machine Learning (ML) / Deep Learning (DL) by way of Convolutional Neural Networ
 		- Data collection (the more, the better)
 			split the video feed into frames to feed to the AI
 			associate a steering angle to any curve present in the images
-		- Convert the data into a format that is easeri to operate on for balancing and visualization (pandas)
+		- Convert the data into a format that is easier to operate on for balancing and visualization (pandas)
 		- Clean up the data / Even it out against outliers
 		- Convert the data back into lists for easier usage in Python
 		- Split the data into training and validation sets (80/20)
 		- Augment the data, to generate more training cases than available
 		- Preprocess the data (resize, zoom-in on the track, blur, change color space) to enhance the training
+		- Build a model (or reuse an existing one)
 		- Train the model
 		- Save the model for later reuse
 
