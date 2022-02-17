@@ -21,11 +21,11 @@ def pre_process(img):
 
 
 def drive():
+    motor.moveForward()
     while True:
         img_path = camera_module.takeImg()
         img = imread(img_path)
         img = np.asArray(img)
         img = pre_process(img)
         steering = float(model.predcit(img))
-
         motor.steer_to_prediction(steering)
