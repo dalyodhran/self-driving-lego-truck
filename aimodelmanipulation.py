@@ -30,13 +30,18 @@ def createAiModel():
 
   # Pooling Layer: compressing the output from the convolutional layer and flattening
   model.add(Flatten())
+
+  # Fully connected layers
   model.add(Dense(100, activation = 'elu'))
   model.add(Dense(50, activation = 'elu'))
   model.add(Dense(10, activation = 'elu'))
+
+  # output layer
   model.add(Dense(1))
 
   # https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Adam
   optimizer = Adam(learning_rate=0.0001)
+
   model.compile(optimizer,loss='mse')
   model.summary()
   return model

@@ -10,7 +10,7 @@ from datasetmanipulation import *
 from aimodelmanipulation import *
 
 # Configuration for the histogram
-display = True
+display = False
 
 # Folder from which to recover the files
 path = 'DataCollected'
@@ -23,7 +23,9 @@ epochs=2
 validation_steps=5
 
 # Step 1 - Gather the data from the DataCollected folder
-data = gatherImageData(path)
+startFolderNumber = 0
+endFolderNumber = len(os.listdir(path))//2  # Number of folders
+data = gatherImageData(path,startFolderNumber,endFolderNumber)
 
 # Step 2 - Balance the data gathered against outliers.
 # display=True, visualize a histogram of the data before and after the balancing

@@ -52,7 +52,7 @@ def preProcess(img):
     img = cv2.cvtColor(img, cv2.COLOR_RGB2YUV)
     img = cv2.GaussianBlur(img,  (3, 3), 0)
     img = cv2.resize(img, (200, 66))
-    img = img/255  # dividing pixel values by 255 to bring pixel values between 0 and 1
+    img = img/255  # dividing pixel values by 255 to bring pixel values between 0 and 1, smaller values, faster compute
     return img
 
 # Randomly affects the images dataset (panning around, flipping the image, changing the brightness etc...)
@@ -87,11 +87,10 @@ def convertDataForProcessing(path, data):
 
 
 # Import the image data (the captures from the collection phase) into the pandas DataFrame format
-def gatherImageData(path):
+def gatherImageData(path, startFolderNumber, endFolderNumber):
     columns = ['ImagePath', 'SteeringAngles']
-    noOfFolders = len(os.listdir(path))//2
     data = pd.DataFrame()
-    for x in range(0,noOfFolders):
+    for x in range(startFolderNumber, endFolderNumber):
         dataNew = pd.read_csv(os.path.join(path, f'log_{x}.csv'), names = columns)
         print(f'{x}:{dataNew.shape[0]} ',end='')
         dataNew['ImagePath']=dataNew['ImagePath'].apply(getRelativePath)
