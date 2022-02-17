@@ -31,12 +31,14 @@ def control():
         if x == 'r':
             print("You pressed", x)
             print('Collecting Data')
-            collect_data = True
+            #collect_data = True
+            data_collection.startCollecting()
         if x == 's':
             print("You pressed", x)
             print('Saving colected Data')
-            collect_data = False
-            data_collection.save_collection()
+            #collect_data = False
+            #data_collection.save_collection()
+            data_collection.stopCollecting()
         if collect_data:
             data_collection.collect_frame()
 
