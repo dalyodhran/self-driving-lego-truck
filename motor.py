@@ -15,14 +15,14 @@ def moveForward():
 
 def turnLeft():
     global lr_counter
-    if(lr_counter < -5):
+    if(lr_counter > -5):
         motor_lr.run_for_degrees(-30)
         lr_counter -= 1
 
 
 def turnRight():
     global lr_counter
-    if(lr_counter > 5):
+    if(lr_counter < 5):
         motor_lr.run_for_degrees(30)
         lr_counter += 1
 
