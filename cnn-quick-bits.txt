@@ -1,0 +1,46 @@
+
+
+The idea is to build a convolutional neural network (CNN) to be able to predict the steering angles when driving on a track, based on images.
+CNNs use relatively little pre-processing compared to other image classification algorithms. 
+This means that the network learns to optimize the filters (or kernels) through automated learning, whereas in traditional algorithms these filters are hand-engineered. 
+This independence from prior knowledge and human intervention in feature extraction is a major advantage.
+
+
+Convolution:
+
+	In mathematics, convolution is a mathematical operation of two functions such that it produces a third function that expresses how another function modifies the shape of one function.
+
+Convolution applied to Neural Network:
+	Applying the above definition, the convolution in a CNN denotes the operation performed on two images.
+	Images can be represented as matrices and matrices can be multiplied to give an output that is used to extract features from an image. 
+	Convolution is the "simple" application of a filter (Kernel) to an input image and that results.
+	Repeated application of the same filter throughout the image results in a map of activation called feature map, indicating location and strength of detected feature in an input image.
+
+	In CNN, in general, multiple filters are applied (inside a Convolutional Layer) so that each of them generates a feature map.
+
+Train test split
+
+	TL;DR – The train_test_split function is for splitting a single dataset for two different purposes: training and testing. 
+	The testing subset is for building your model. 
+
+	The testing subset is for using the model on unknown data to evaluate the performance of the model.
+
+	Why?
+
+		Using the same dataset for both training and testing leaves room for miscalculations, thus increases the chances of inaccurate predictions.
+
+		The ideal split is said to be 80:20 for training and testing. 
+		This split may need to be adjusted depending on the size of the dataset and parameter complexity.
+
+
+What to look out for:
+	
+	Overfitting:  "the production of an analysis that corresponds too closely or exactly to a particular set of data, and may therefore fail to fit additional data or predict future observations reliably"
+
+Reference:
+	https://serokell.io/blog/introduction-to-convolutional-neural-networks
+	https://serokell.io/blog/deep-learning-and-neural-network-guide
+
+Dense Layers:
+
+	This layer helps in changing the dimensionality of the output from the preceding layer so that the model can easily define the relationship between the values of the data in which the model is working.

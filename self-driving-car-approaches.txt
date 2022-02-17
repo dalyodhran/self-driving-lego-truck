@@ -1,0 +1,58 @@
+
+Goal: Self-driving autonomous car
+
+Two possible approaches
+
+OPENCV:
+
+"Lane" script = Lane
+
+	Read a video feed
+	Mask it
+	Warp it (from perspective to bird's eye view, to make it more readable)
+	Read the frames and 
+
+	Pros
+		
+		Possibly faster to run
+		Possibly faster/easier to implement (the library does all the heavy lifting)
+
+	Cons
+
+		Math based
+		Not as flexible as ML solutions 
+		Not as fun as ML
+
+
+"Lane" script = DataCollection
+
+Machine Learning (ML) / Deep Learning (DL) by way of Convolutional Neural Network (CNN)
+
+	Steps:
+
+		- Data collection (the more, the better)
+			split the video feed into frames to feed to the AI
+			associate a steering angle to any curve present in the images
+		- Convert the data into a format that is easeri to operate on for balancing and visualization (pandas)
+		- Clean up the data / Even it out against outliers
+		- Convert the data back into lists for easier usage in Python
+		- Split the data into training and validation sets (80/20)
+		- Augment the data, to generate more training cases than available
+		- Preprocess the data (resize, zoom-in on the track, blur, change color space) to enhance the training
+		- Train the model
+		- Save the model for later reuse
+
+	Pros
+
+		- less math, more WOW 
+		- We actually get to learn a bit about ML
+		- It's fun
+
+	Cons
+
+		- Way more steps to go through compared to the OpenCV approach
+		- Requires "manual" operation (track construction and data collection)
+		- Heavy dependency on the joystick and motor modules as both need to be ready asap in order to be able to gather data and, if necessary, perform the tuning needed to train the model effectively.
+		- Might be slower to set-up and also to run, especcially if we are considering adding sign recognitions (ie: stop sign)
+
+	
