@@ -15,7 +15,11 @@ def moveForward():
 
 
 def turnLeft(deg):
-    motor_lr.run_for_degrees(deg)
+    currentDeg = motor_lr.get_aposition()
+    if(currentDeg + deg > global_left_rotate):
+        motor_lr.run_for_degrees(global_left_rotate-currentDeg)
+    else:
+        motor_lr.run_for_degrees(deg)
 
 
 def turnRight(deg):
