@@ -3,16 +3,14 @@ from datetime import datetime
 from pathlib import Path
 import os
 
-camera = PiCamera()
-
 
 def takeImg(savePath=str(Path().absolute()) + "/"):
-    warmUpCamera()
+
     timeNow = datetime.now().strftime("%H_%M_%S")
     imageFileName = "image_" + timeNow + ".jpg"
     image_path = os.path.join(savePath, imageFileName)
     camera.capture(image_path, resize=(480, 240))
-    shutDownCamera()
+
     return image_path
 
 
@@ -30,3 +28,7 @@ if __name__ == '__main__':
     while (counter < 10):
         takeImg()
         counter = counter + 1
+
+camera = PiCamera()
+warmUpCamera()
+shutDownCamera()

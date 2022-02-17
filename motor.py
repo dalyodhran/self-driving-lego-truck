@@ -1,12 +1,25 @@
 from buildhat import MotorPair
 from buildhat import Motor
 import time
+import math
 
 
 motor_forward = MotorPair('B', 'C')
 motor_forward.set_default_speed(100)
 motor_lr = Motor('A')
-lr_counter = 0
+lr_counter = 5
+
+
+def steer_to_prediction(steering):
+    transform_steering = (steering + 1) * 5
+    turns = int(math.ceil(transform_steering))
+    print(f'Turns: {turns}')
+    if turns > 5:
+        for i in range(0, turns):
+            turnRight()
+    else:
+        for i in range(5, turns):
+            turnLeft()
 
 
 def moveForward():
@@ -15,14 +28,14 @@ def moveForward():
 
 def turnLeft():
     global lr_counter
-    if(lr_counter > -5):
+    if(lr_counter > 1):
         motor_lr.run_for_degrees(-30)
         lr_counter -= 1
 
 
 def turnRight():
     global lr_counter
-    if(lr_counter < 5):
+    if(lr_counter < 9):
         motor_lr.run_for_degrees(30)
         lr_counter += 1
 
@@ -33,7 +46,7 @@ def stop():
 
 
 def current_pos():
-    return motor_lr.get_aposition()
+    return (lr_counter / 5) - 1
 
 
 def calibrate():
