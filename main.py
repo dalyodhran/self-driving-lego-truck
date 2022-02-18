@@ -4,11 +4,13 @@ import motor
 from cv2 import imread, COLOR_RGB2YUV, cvtColor, GaussianBlur, resize
 import os
 
-from tensorflow.keras.models import load_model
+import tflite_runtime.interpreter as tflite
+#from tensorflow.keras.models import load_model
 
 if __name__ == "__main__":
     motor.calibrate()
-    model = load_model(os.path.join(os.getcwd(), './model.h5'))
+    model = tflite.load_model(os.path.join(os.getcwd(), './model.tflite'))
+    print("loaded model")
 
 
 def pre_process(img):
