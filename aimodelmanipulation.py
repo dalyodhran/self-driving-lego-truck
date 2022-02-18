@@ -40,12 +40,23 @@ def createAiModel():
   model.add(Dense(1))
 
   # https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Adam
-  optimizer = Adam(learning_rate=0.0001)
+  optimizer = Adam(lr=0.0001)
 
+  # loss quantifies how well a model is performing a task by calculating a single number, the loss,
+  # from the model output and the desired target.
+  # If the model predictions are totally wrong, the loss will be a high number.
+  # If they’re pretty good, it will be close to zero.
   model.compile(optimizer,loss='mse')
+
   model.summary()
   return model
 
 def saveModel(model):
     model.save('model.h5')
     print('Model Saved')
+
+def getPrediction(model, img):
+    value = float(model.predict(img))
+    #print(value)
+    return value
+
