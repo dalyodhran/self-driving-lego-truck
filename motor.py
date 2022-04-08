@@ -29,14 +29,18 @@ def moveForward():
 def turnLeft():
     global lr_counter
     if(lr_counter > 1):
+        print(f'Before turn {motor_lr.get_position()}')
         motor_lr.run_for_degrees(-30)
+        print(f'Before turn {motor_lr.get_position()}')
         lr_counter -= 1
 
 
 def turnRight():
     global lr_counter
     if(lr_counter < 9):
+        print(f'Before turn {motor_lr.get_position()}')
         motor_lr.run_for_degrees(30)
+        print(f'Before turn {motor_lr.get_position()}')
         lr_counter += 1
 
 
