@@ -102,7 +102,7 @@ class LegoMotor:
     def __init__(self):
         print("Calibrating")
         self.calibrate()
-        self.left_multiplier = (self.controller_max_left // self.avg_left) * -1
+        self.left_multiplier = self.controller_max_left // self.avg_left
         print(f'Left turn multiplier {self.left_multiplier}')
         self.right_multiplier = self.controller_max_right // self.avg_right
         print(f'Right turn multiplier {self.right_multiplier}')
@@ -113,7 +113,7 @@ class LegoMotor:
         self.motor_lr.run_for_degrees(turn_value)
 
     def turn_left(self, value):
-        turn_value = (value // self.left_multiplier) * -1
+        turn_value = value // self.left_multiplier
         print(f'left turn value {turn_value}')
         self.motor_lr.run_for_degrees(turn_value)
 
@@ -139,7 +139,7 @@ class LegoMotor:
             self.avg_right += position_right
 
         self.motor_lr.run_to_position(self.avg_center / 5)
-        self.avg_left = (self.avg_left // 5) * -1
+        self.avg_left = self.avg_left // 5
         self.avg_right = self.avg_right // 5
 
         print(f'Average left {self.avg_left}')
