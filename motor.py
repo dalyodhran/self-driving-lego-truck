@@ -139,4 +139,9 @@ class LegoMotor:
             self.avg_right += position_right
 
         self.motor_lr.run_to_position(self.avg_center / 5)
+        self.avg_left = (self.avg_left // 5) * -1
+        self.avg_right = self.avg_right // 5
+
+        print(f'Average left {self.avg_left}')
+        print(f'Average right {self.avg_right}')
         print(self.motor_lr.get_aposition())
