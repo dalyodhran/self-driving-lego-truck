@@ -110,12 +110,12 @@ class LegoMotor:
     def turn_right(self, value):
         turn_value = value // self.right_multiplier
         print(f'Right turn value {turn_value}')
-        self.motor_lr.run_for_degrees(turn_value)
+        self.motor_lr.run_to_position(turn_value)
 
     def turn_left(self, value):
         turn_value = value // self.left_multiplier
         print(f'left turn value {turn_value}')
-        self.motor_lr.run_for_degrees(turn_value)
+        self.motor_lr.run_to_position(turn_value)
 
     def calibrate(self):
         for i in range(0, 5):
