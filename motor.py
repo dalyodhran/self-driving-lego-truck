@@ -27,17 +27,11 @@ def moveForward():
 
 
 def turnLeft():
-    global lr_counter
-    if(lr_counter > 1):
-        motor_lr.run_for_degrees(-30)
-        lr_counter -= 1
+    motor_lr.run_for_degrees(-30)
 
 
 def turnRight():
-    global lr_counter
-    if(lr_counter < 9):
-        motor_lr.run_for_degrees(30)
-        lr_counter += 1
+    motor_lr.run_for_degrees(30)
 
 
 def stop():
@@ -74,12 +68,12 @@ def calibrate():
 
 def run():
     print("Calibrating")
-    calibrate()
+    # calibrate()
 
 
 if __name__ == "__main__":
     print("Calibrating")
-    calibrate()
+    # calibrate()
 
     print('Run test')
     moveForward()
