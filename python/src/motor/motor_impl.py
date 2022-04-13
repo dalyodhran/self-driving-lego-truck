@@ -115,6 +115,5 @@ class MotorImpl:
 
 if __name__ == "__main__":
     motor = MotorImpl()
-    input1 = input()
     while(True):
-        motor.go_to_position(int(input1))
+        motor.go_to_position(int(input()))
