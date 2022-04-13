@@ -82,13 +82,13 @@ class MotorImpl:
         avg_left = 0
 
         for i in range(0, 5):
-            self.motor_lr.run_for_degrees(360)
-            right_position = self.motor_lr.get_aposition()
-            print(f'Fully right position {right_position}')
-
             self.motor_lr.run_for_degrees(-360)
             left_position = self.motor_lr.get_aposition()
             print(f'Fully left position {left_position}')
+
+            self.motor_lr.run_for_degrees(360)
+            right_position = self.motor_lr.get_aposition()
+            print(f'Fully right position {right_position}')
 
             offset = abs(right_position - left_position)
             if left_position > right_position:
