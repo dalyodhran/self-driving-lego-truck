@@ -1,8 +1,7 @@
 import tty
 import sys
 import termios
-import motor
-import data_collection
+from python.src.collection import data_collection
 import threading
 import time
 

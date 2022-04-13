@@ -1,8 +1,6 @@
 import camera_module as camera_module
 import numpy as np
-import motor
 import cv2
-import os
 
 from tensorflow.keras.models import load_model
 
