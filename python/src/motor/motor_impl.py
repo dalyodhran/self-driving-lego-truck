@@ -109,6 +109,12 @@ class MotorImpl:
         print(f'Average Right {self.abs_right}')
         print(f'Average Left {self.abs_left}')
 
+    def go_to_position(self, value):
+        self.motor_lr.run_to_position(value)
+
 
 if __name__ == "__main__":
-    MotorImpl()
+    motor = MotorImpl()
+    input1 = input()
+    while(True):
+        motor.go_to_position(input1)
