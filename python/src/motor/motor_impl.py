@@ -88,7 +88,7 @@ class MotorImpl:
     def calculate_center(self, left_bound, right_bound):
         left_angle = 180 - left_bound
         right_angle = 180 - abs(right_bound)
-        return (left_angle + right_angle) // 2
+        return left_bound + ((left_angle + right_angle) // 2)
 
     def calculate_bounds(self):
         avg_right = 0
