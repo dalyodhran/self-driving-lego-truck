@@ -77,7 +77,20 @@ class MotorImpl:
         self.calibrate()
 
     def calibrate(self):
-        avg_center = 0
+        self.abs_left, self.abs_right = self.calculate_bounds()
+        self.center = self.calculate_center(self.abs_left, self.abs_right)
+
+        self.motor_lr.run_to_position(self.center)
+        print(f'Average Center {self.center}')
+        print(f'Average Right {self.abs_right}')
+        print(f'Average Left {self.abs_left}')
+
+    def calculate_center(self, left_bound, right_bound):
+        left_angle = 180 - left_bound
+        right_angle = 180 - abs(right_bound)
+        return (left_angle + right_angle) // 2
+
+    def calculate_bounds(self):
         avg_right = 0
         avg_left = 0
 
@@ -90,24 +103,11 @@ class MotorImpl:
             right_position = self.motor_lr.get_aposition()
             print(f'Fully right position {right_position}')
 
-            offset = abs(right_position - left_position)
-            if left_position > right_position:
-                center_position = left_position + (offset / 2)
-            else:
-                center_position = right_position + (offset / 2)
-            print(f'Center position {center_position}')
-
-            avg_center += center_position
             avg_right += right_position
             avg_left += left_position
 
-        self.center = avg_center // 5
-        self.abs_right = avg_right // 5
-        self.abs_left = avg_left // 5
-        self.motor_lr.run_to_position(self.center)
-        print(f'Average Center {self.center}')
-        print(f'Average Right {self.abs_right}')
-        print(f'Average Left {self.abs_left}')
+        return avg_left // 5, avg_right // 5
+
 
     def go_to_position(self, value):
         self.motor_lr.run_to_position(value)
