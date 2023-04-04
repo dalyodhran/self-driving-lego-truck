@@ -5,6 +5,7 @@ from python.src.collection import data_collection
 import threading
 import time
 from pydualsense import *
+import curses
 
 filedescriptors = termios.tcgetattr(sys.stdin)
 stop_threads = False
@@ -68,7 +69,8 @@ def run_controller():
             break
 
 
-def init_controller():
+if __name__ == '__main__':
+    init()
     dualsense = pydualsense()
     dualsense.init()
 
@@ -77,9 +79,5 @@ def init_controller():
         print(f"epoch: {time.time():.0f}")
         time.sleep(0.5)
 
-
-if __name__ == '__main__':
-    init()
-    init_controller()
-    run_control()
+    run_controlller()
     dualsense.close()
