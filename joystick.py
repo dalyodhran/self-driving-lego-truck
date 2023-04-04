@@ -4,6 +4,7 @@ import termios
 from python.src.collection import data_collection
 import threading
 import time
+from pydualsense import *
 
 filedescriptors = termios.tcgetattr(sys.stdin)
 stop_threads = False
@@ -54,7 +55,31 @@ def control():
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, filedescriptors)
 
 
+def run_controller():
+    curses.curs_set(0)
+    curses.use_default_colors()
+    stdscr.nodelay(1)
+    while True:
+        if dualsense.state.cross:
+            motor.moveForward()
+
+        print("Exit script with 'q'\n")
+        if print_states.getch() == ord('q'):
+            break
+
+
+def init_controller():
+    dualsense = pydualsense()
+    dualsense.init()
+
+    while dualsense.states is None:
+        print("Waiting until connection is established...")
+        print(f"epoch: {time.time():.0f}")
+        time.sleep(0.5)
+
+
 if __name__ == '__main__':
     init()
-    motor.run()
-    control()
+    init_controller()
+    run_control()
+    dualsense.close()
