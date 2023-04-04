@@ -57,15 +57,12 @@ def control():
 
 
 def run_controller():
-    curses.curs_set(0)
-    curses.use_default_colors()
-    stdscr.nodelay(1)
     while True:
         if dualsense.state.cross:
-            motor.moveForward()
+            print("X")
 
-        print("Exit script with 'q'\n")
-        if print_states.getch() == ord('q'):
+        print("Exit script with 'O'\n")
+        if dualsense.state.circle:
             break
 
 
@@ -79,5 +76,5 @@ if __name__ == '__main__':
         print(f"epoch: {time.time():.0f}")
         time.sleep(0.5)
 
-    run_controlller()
+    run_controller()
     dualsense.close()
