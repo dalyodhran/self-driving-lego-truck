@@ -68,8 +68,19 @@ def cross_down(state):
     print(f'cross {state}')
 
 
+def convert_thumbstick_input(x, y):
+    # Calculate the angle of the thumbstick input
+    angle = math.atan2(y, x)
+
+    # Map the angle to a single axis value
+    axis = math.cos(angle)
+
+    return axis
+
+
 def joystick(stateX, stateY):
-    print(f'joystick {stateX} {stateY}')
+    angle = convert_thumbstick_input(stateX, stateY)
+    print(f'angle: {angle}')
 
 
 def run_controller():
