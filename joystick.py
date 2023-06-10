@@ -81,7 +81,14 @@ def convert_thumbstick_input(x, y):
 
 def joystick(stateX, stateY):
     angle = convert_thumbstick_input(stateX, stateY)
-    print(f'angle: {angle}')
+    if angle > 0:
+        print(f'Right angle: {angle}')
+    if angle < 0:
+        print(f'Left angle: {angle}')
+    else:
+        print(f'Center: {angle}')
+
+    time.sleep(0.005)
 
 
 def run_controller():

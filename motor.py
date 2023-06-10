@@ -4,7 +4,7 @@ import time
 import math
 
 
-motor_forward = MotorPair('B', 'C')
+motor_forward = MotorPair('C', 'D')
 # motor_forward.set_default_speed(100)
 # motor_lr = Motor('A')
 # lr_counter = 5
