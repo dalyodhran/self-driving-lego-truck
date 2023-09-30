@@ -5,9 +5,9 @@ import math
 
 
 motor_forward = MotorPair('C', 'D')
-# motor_forward.set_default_speed(100)
-# motor_lr = Motor('A')
-# lr_counter = 5
+motor_forward.set_default_speed(100)
+motor_lr = Motor('A')
+lr_counter = 5
 
 
 def steer_to_prediction(steering):
@@ -54,25 +54,25 @@ def current_pos():
 
 def calibrate():
     avg_center = 0
-    # for i in range(0, 5):
-        # motor_lr.run_for_degrees(360)
+    for i in range(0, 5):
+        motor_lr.run_for_degrees(360)
 
-        # position_right = motor_lr.get_aposition()
-        # print(position_right)
-        #
-        # motor_lr.run_for_degrees(-360)
-        # position_left = motor_lr.get_aposition()
-        # print(position_left)
-        # offset = abs(position_right - position_left)
-        # if position_left > position_right:
-        #     center = position_left + (offset/2)
-        # else:
-        #     center = position_right + (offset/2)
-        # print(f'center: {center}')
-        # avg_center += center
+        position_right = motor_lr.get_aposition()
+        print(position_right)
 
-    # motor_lr.run_to_position(avg_center/5)
-    # print(motor_lr.get_aposition())
+        motor_lr.run_for_degrees(-360)
+        position_left = motor_lr.get_aposition()
+        print(position_left)
+        offset = abs(position_right - position_left)
+        if position_left > position_right:
+            center = position_left + (offset/2)
+        else:
+            center = position_right + (offset/2)
+        print(f'center: {center}')
+        avg_center += center
+
+    motor_lr.run_to_position(avg_center/5)
+    print(motor_lr.get_aposition())
 
 
 def run():
