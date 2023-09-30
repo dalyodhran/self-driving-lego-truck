@@ -80,13 +80,8 @@ def convert_thumbstick_input(x, y):
 
 
 def joystick(stateX, stateY):
-    angle = round(convert_thumbstick_input(stateX, stateY), 5)
-    if angle > 0:
-        print(f'Right angle: {angle}')
-    if angle < 0:
-        print(f'Left angle: {angle}')
-    else:
-        print(f'Center: {angle}')
+    # angle = convert_thumbstick_input(stateX, stateY)
+    print(f'joystick {stateX} {stateY}')
 
 
 def run_controller():
@@ -110,5 +105,7 @@ if __name__ == '__main__':
     dualsense.cross_pressed += cross_down
     dualsense.left_joystick_changed += joystick
     run_controller()
+
+    print("Closing dual sense")
     dualsense.close()
 
