@@ -80,7 +80,7 @@ def convert_thumbstick_input(x, y):
 
 
 def joystick(stateX, stateY):
-    angle = convert_thumbstick_input(stateX, stateY)
+    angle = round(convert_thumbstick_input(stateX, stateY), 5)
     if angle > 0:
         print(f'Right angle: {angle}')
     if angle < 0:
