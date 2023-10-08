@@ -78,9 +78,9 @@ def convert_thumbstick_input(x, y):
 
 def joystick(stateX, stateY):
     angle = convert_thumbstick_input(stateX, stateY)
-    if angle > 0:
+    if angle > 0.0 and angle < 1.0:
         print(f'Right angle: {angle}')
-    if angle < 0:
+    if angle < 0.0 and angle > -1.0:
         print(f'Left angle: {angle}')
     else:
         print(f'Center: {angle}')
@@ -93,7 +93,7 @@ def run_controller():
         if dualsense.state.circle:
             break
 
-    time.sleep()
+    timer.sleep()
 
 
 if __name__ == '__main__':
