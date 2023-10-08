@@ -1,13 +1,10 @@
-import curses
 import tty
 import sys
-import termios
-
 import motor
 from python.src.collection import data_collection
-import threading
 import time
 import math
+import fpstimer
 from pydualsense import *
 
 
@@ -90,11 +87,13 @@ def joystick(stateX, stateY):
 
 
 def run_controller():
-
+    timer = fpstimer.FPSTimer(60)
     while not dualsense.state.R1:
 
         if dualsense.state.circle:
             break
+
+    time.sleep()
 
 
 if __name__ == '__main__':
