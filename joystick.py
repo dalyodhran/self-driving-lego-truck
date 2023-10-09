@@ -61,15 +61,13 @@ absolutes = {
 }
 
 CENTER = 128
-BLIND = 6
+BLIND = 4
 left_joystick = [CENTER, CENTER]
 
 def update_left_joystick_position(event):
     global left_joystick
     if event.code == 0:
-        left_joystick[0] = value
-    elif event.code == 1:
-        left_joystick[1] = value
+        motor.turn(value)
 
 
 if __name__ == '__main__':
@@ -77,6 +75,7 @@ if __name__ == '__main__':
     # motor.run()
     # control()
 
+    motor.calibrate()
     print(gamepad)
     timer = fpstimer.FPSTimer(10)
 
@@ -84,12 +83,12 @@ if __name__ == '__main__':
         if event.type == ecodes.EV_ABS and event.code in absolutes:
             action, value = absolutes[event.code], event.value
 
-            if event.code in [0, 1]:
-                if event.code in [0, 1]:
-                    update_left_joystick_position(event)
-
+            if event.code in [0]:
                 if (CENTER - BLIND) < event.value < (CENTER + BLIND):
                     continue
+
+                if event.code in [0]:
+                    update_left_joystick_position(event)
 
                 print(f'{left_joystick}')
                 continue
