@@ -86,7 +86,7 @@ def calibrate():
 
         print(f'center: {center}')
         avg_center += center
-
+    print(avg_center/5)
     motor_lr.run_to_position(avg_center/5)
     print(motor_lr.get_aposition())
 
