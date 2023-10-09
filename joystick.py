@@ -78,7 +78,7 @@ if __name__ == '__main__':
     # control()
 
     print(gamepad)
-    timer = fpstimer.FPSTimer(30)
+    timer = fpstimer.FPSTimer(10)
 
     for event in gamepad.read_loop():
         if event.type == ecodes.EV_ABS and event.code in absolutes:
